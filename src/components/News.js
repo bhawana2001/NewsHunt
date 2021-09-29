@@ -36,7 +36,7 @@ export class News extends Component {
         })
     }
     handleNextClick = async () => {
-        if (!this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)) {
+        if (!(this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize))) {
 
             let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=d4b63cb558a14fcf8182f71a9f7af911&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`
             this.setState({ loading: true })
