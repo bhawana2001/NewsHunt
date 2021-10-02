@@ -6,7 +6,7 @@ export class NewsItem extends Component {
     render() {
         let { title, description, imageUrl, newsUrl } = this.props;
         return (
-            <div className="my-3">
+            <div className="my-3" >
                 <div className="card" style={{ width: "18rem" }}>
                     <img src={imageUrl ? imageUrl : "https://www.xda-developers.com/files/2021/09/iPhone-13-Pro-Mini-Max-XDA-23424lkjkljsdf243.jpeg"} className="card-img-top" alt="..." />
                     <div className="card-body">
