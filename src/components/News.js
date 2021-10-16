@@ -33,19 +33,9 @@ const News = (props) => {
         updateNews();
     }, [])
 
-
-    // handlePrevClick = async () => {
-    //setPage(page-1)
-    //    updateNews();
-    // }
-    // handleNextClick = async () => {
-    //setPage(page+1)
-    //   updateNews();
-    // }
-
     const fetchMoreData = async () => {
+        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page + 1}&pageSize=${props.pageSize}`
         setPage(page + 1)
-        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`
         let data = await fetch(url);
         let parseData = await data.json();
         setArticles(articles.concat(parseData.articles))
@@ -53,7 +43,7 @@ const News = (props) => {
     }
     return (
         <>
-            <h1 className="text-center" style={{ margin: '35px 0px' , marginTop:'90px'}}>📰NewsHunt - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
+            <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>📰NewsHunt - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
             {loading && <Spinner />}
             <InfiniteScroll dataLength={articles.length} next={fetchMoreData} hasMore={articles.length !== totalResults} loader={<Spinner />} >
                 <div className='container'>
@@ -66,10 +56,6 @@ const News = (props) => {
                     </div>
                 </div>
             </InfiniteScroll>
-            {/* <div className="d-flex justify-content-between">
-                    <button disabled={this.state.page <= 1} type="button" class="btn btn-dark" onClick={this.handlePrevClick}> &larr; Previous</button>
-                    <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / props.pageSize)} type="button" class="btn btn-dark" onClick={this.handleNextClick}>Next &rarr;</button>
-                </div> */}
         </>
     )
 }
