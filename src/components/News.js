@@ -10,7 +10,6 @@ const News = (props) => {
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
     const [totalResults, setTotalResults] = useState(0)
-    //document.title = `${capitalizeFirstLetter(props.category)} - NewsHunt`
 
     const capitalizeFirstLetter = (s) => {
         return s.charAt(0).toUpperCase() + s.slice(1);
@@ -30,6 +29,7 @@ const News = (props) => {
         props.setProgress(100)
     }
     useEffect(() => {
+    document.title = `${capitalizeFirstLetter(props.category)} - NewsHunt`
         updateNews();
     }, [])
 
